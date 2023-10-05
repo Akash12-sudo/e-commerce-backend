@@ -138,9 +138,10 @@ const addToCart = async (req, res) => {
 
 const signOut = async (req, res) => {
   try {
+    console.log(req.headers);
     res.clearCookie("accessToken");
     console.log("logout successfully");
-    return res.status(201).send("logout successfully");
+    res.status(201).json({ message: "logout", data: req.headers });
   } catch (err) {
     console.log(err);
     return res.status(403).send(err);

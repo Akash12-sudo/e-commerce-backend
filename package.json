@@ -8,7 +8,7 @@
   },
   "module": "include",
   "scripts": {
-    "start": "node server.js"
+    "start": "nodemon server.js"
   },
   "author": "",
   "license": "ISC",
