@@ -82,7 +82,7 @@ const loginAccount = async (req, res) => {
     // Set the HTTP-only cookie in the response
     const cookie = res.cookie("accessToken", token, {
       sameSite: "none", // Required for cross-origin cookies when using HTTPS
-      httpOnly: true, // Ensures that the cookie is accessible only through HTTP requests
+      httpOnly: false, // Ensures that the cookie is accessible only through HTTP requests
       secure: true, // Set to true for secure cookie transmission over HTTPS
       expires: new Date(Date.now() + 14400000), // Adjust the expiration time as needed
     });
@@ -139,9 +139,13 @@ const addToCart = async (req, res) => {
 const signOut = async (req, res) => {
   try {
     console.log(req.headers);
-    res.clearCookie("accessToken", { path: "/" });
+    res.clearCookie("accessToken");
     console.log("logout successfully okay");
-    res.status(201).json({ message: "logout", data: res.getHeaders() });
+    res.status(201).json({
+      message: "logout",
+      data: res.getHeaders(),
+      cookies: req.cookies,
+    });
   } catch (err) {
     console.log(err);
     return res.status(403).send(err);
