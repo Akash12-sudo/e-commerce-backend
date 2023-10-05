@@ -140,7 +140,7 @@ const signOut = async (req, res) => {
   try {
     console.log(req.headers);
     res.clearCookie("accessToken", { path: "/" });
-    console.log("logout successfully");
+    console.log("logout successfully okay");
     res.status(201).json({ message: "logout", data: res.getHeaders() });
   } catch (err) {
     console.log(err);
