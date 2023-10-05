@@ -80,12 +80,12 @@ const loginAccount = async (req, res) => {
     console.log({ user: user });
 
     // Set the HTTP-only cookie in the response
-    const cookie = res.cookie("accessToken", token, {
-      sameSite: "lax",
-      httpOnly: false,
-      secure: false,
-      expires: new Date(Date.now() + 14400000),
-    });
+    const cookieOptions = {
+      sameSite: "none", // Required for cross-origin cookies when using HTTPS
+      httpOnly: true, // Ensures that the cookie is accessible only through HTTP requests
+      secure: true, // Set to true for secure cookie transmission over HTTPS
+      expires: new Date(Date.now() + 14400000), // Adjust the expiration time as needed
+    };
 
     console.log(cookie);
 
