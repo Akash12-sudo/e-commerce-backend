@@ -81,10 +81,10 @@ const loginAccount = async (req, res) => {
 
     // Set the HTTP-only cookie in the response
     const cookieOptions = {
-      sameSite: "none", // Required for cross-origin cookies when using HTTPS
-      httpOnly: true, // Ensures that the cookie is accessible only through HTTP requests
-      secure: true, // Set to true for secure cookie transmission over HTTPS
-      expires: new Date(Date.now() + 14400000), // Adjust the expiration time as needed
+      sameSite: "none",
+      httpOnly: true,
+      secure: true,
+      expires: new Date(Date.now() + 14400000),
     };
 
     console.log(cookie);
@@ -92,7 +92,7 @@ const loginAccount = async (req, res) => {
     return res.status(201).send("User logged in successfully");
   } catch (err) {
     console.error(err);
-    return res.status(500).send("Internal server error");
+    return res.status(500).json({ error: true, message: err });
   }
 };
 
