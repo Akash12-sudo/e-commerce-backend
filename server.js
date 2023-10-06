@@ -57,14 +57,6 @@ app.use(passport.session());
 app.use(Routes);
 app.use("/auth", authRoutes);
 
-// Serve static files (JavaScript bundles, CSS, etc.)
-app.use(express.static(path.join(__dirname, "public")));
-
-// Handle all other routes by serving the index.html file
-app.get("*", (req, res) => {
-  res.sendFile(path.join(__dirname, "public", "index.html"));
-});
-
 app.listen(process.env.PORT, () => {
   console.log(`Server is running at port ${process.env.PORT}`);
 });
