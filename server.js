@@ -10,12 +10,13 @@ const passport = require("passport");
 const session = require("express-session");
 const passportSetup = require("./middlewares/passport.js");
 const authRoutes = require("./routes/auth.js");
+const path = require("path"); // Import the 'path' module
 dotenv.config();
 
 const mongoConnection = async () => {
   try {
     await mongoose.connect(process.env.URI);
-    console.log("successfully connected with mongoDB");
+    console.log("successfully connected with MongoDB");
   } catch (err) {
     console.error(err);
   }
