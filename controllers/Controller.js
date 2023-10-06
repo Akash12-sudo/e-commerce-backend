@@ -219,7 +219,9 @@ const removeItem = async (req, res) => {
     await user.save();
 
     console.log("Item removed successfully from cart");
-    res.status(201).json({ message: "Item removed successfully from cart" });
+    res
+      .status(201)
+      .json({ message: "Item removed successfully from cart", data: user });
   } catch (err) {
     res
       .status(404)
